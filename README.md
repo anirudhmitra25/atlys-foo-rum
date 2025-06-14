@@ -4,7 +4,7 @@ A social media feed application built with React, TypeScript, and Vite as an ass
 
 ## 🚀 Live Demo
 
-**[View Live Application](https://atlys-foo-rum.netlify.app/feed)**
+**[View Live Application](https://atlys-foo-rum.netlify.app)**
 
 ## 📋 Features
 
