@@ -4,4 +4,5 @@ export interface Post {
   name: string;
   createdAt: string;
   profilePhoto: string;
+  isLiked: boolean;
 }

@@ -39,6 +39,7 @@ const Feed = () => {
         createdAt: new Date().toISOString(),
         name: currentUser?.email || "Anonymous",
         profilePhoto: "",
+        isLiked: false,
       })
     );
   };

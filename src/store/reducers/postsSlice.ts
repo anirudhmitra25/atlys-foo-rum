@@ -15,6 +15,7 @@ const initialState = {
         "Just finished reading a great book on React development. The concepts around hooks and state management are fascinating!",
       createdAt: "2024-01-15T10:30:00.000Z",
       profilePhoto: profile1,
+      isLiked: true,
     },
     {
       id: "2",
@@ -23,6 +24,7 @@ const initialState = {
         "Beautiful sunset today! Sometimes you just need to take a moment to appreciate the simple things in life. 🌅",
       createdAt: "2024-01-14T18:45:00.000Z",
       profilePhoto: profile2,
+      isLiked: false,
     },
     {
       id: "3",
@@ -31,6 +33,7 @@ const initialState = {
         "Working on a new TypeScript project with Redux Toolkit. The developer experience is so much better than the old Redux setup!",
       createdAt: "2024-01-13T14:20:00.000Z",
       profilePhoto: profile3,
+      isLiked: false,
     },
   ] as Post[],
 };
@@ -43,11 +46,23 @@ const postsSlice = createSlice({
     addPost: (state, action: PayloadAction<Post>) => {
       state.posts.unshift(action.payload);
     },
+    likePost: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        isLiked: boolean;
+      }>
+    ) => {
+      const { id, isLiked } = action.payload;
+
+      let post = state.posts.find((post: Post) => post.id === id);
+      if (post) post.isLiked = isLiked;
+    },
   },
 });
 
 // Export actions
-export const { addPost } = postsSlice.actions;
+export const { addPost, likePost } = postsSlice.actions;
 
 // Export reducer
 export default postsSlice.reducer;

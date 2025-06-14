@@ -7,21 +7,29 @@ import commentsIcon from "../../assets/comments.svg";
 import sendIcon from "../../assets/send.svg";
 import Like from "../SVG/like";
 import { formatTimeAgo } from "../../helper/dateUtils";
+import { likePost } from "../../store/reducers/postsSlice";
+import { useDispatch } from "react-redux";
 
 interface PostProps {
   post: PostType;
 }
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  const [isLiked, setIsLiked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleLike = () => {
-    setIsLiked(!isLiked);
+    dispatch(
+      likePost({
+        id: post.id,
+        isLiked: !post.isLiked,
+      })
+    );
     setIsAnimating(true);
 
-    if (!isLiked) {
+    if (!post.isLiked) {
       setShowHearts(true);
       // Hide hearts after animation
       setTimeout(() => setShowHearts(false), 1000);
@@ -76,7 +84,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
             onClick={handleLike}
             className={`flex items-center gap-2 !p-2 !text-gray-500 hover:!text-gray-700 hover:!bg-white hover:shadow-sm transition-all duration-200 ease-in-out transform hover:scale-105 rounded-lg
             ${
-              isLiked
+              post.isLiked
                 ? "!text-red-500 !bg-red-50 shadow-lg shadow-red-200/50"
                 : "!text-gray-500 hover:!text-red-400 hover:!bg-red-50"
             }
@@ -88,7 +96,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                 isAnimating ? "animate-pulse" : ""
               }`}
             >
-              <Like color={isLiked ? "#EF4444" : "#2F384C"} />
+              <Like color={post.isLiked ? "#EF4444" : "#2F384C"} />
             </div>
           </Button>
 
