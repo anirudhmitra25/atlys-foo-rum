@@ -31,6 +31,10 @@ export const validateSignUp = (formData: SignUpFormData): ValidationResult => {
     errors.confirmPassword = "Please confirm your password";
   }
 
+  if(formData.password.length<8){
+    errors.password = "Password should be greater than 8 characters"
+  }
+
   // Check if passwords match (only if both are provided)
   if (
     formData.password &&
