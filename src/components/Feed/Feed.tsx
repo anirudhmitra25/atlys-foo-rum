@@ -47,7 +47,7 @@ const Feed = () => {
     setIsModalOpen(true);
   };
 
-  const handleFeedClick = (e: React.MouseEvent) => {
+  const handleFeedClick = () => {
     if (!isLoggedIn) {
       handleUnauthenticatedClick();
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   RiParagraph,
   RiBold,
@@ -11,7 +11,6 @@ import {
   RiAddLine,
   RiMore2Fill,
 } from "react-icons/ri";
-import { BsChevronDown } from "react-icons/bs";
 import Button from "../common/Button";
 import { Dropdown } from "../common";
 import type { DropdownOption } from "../common/Dropdown";
